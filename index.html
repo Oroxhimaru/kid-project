@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Application</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultLabel {
+            display: none;
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #result {
+            font-size: 18px;
+            color: #4caf50;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="calculatorForm">
+        <h1>Calculator Application</h1>
+
+        <label for="num1">Enter Number 1:</label>
+        <input type="text" id="num1" />
+
+        <label for="num2">Enter Number 2:</label>
+        <input type="text" id="num2" />
+
+        <label for="operation">Select Operation:</label>
+        <select id="operation">
+            <option value="add">Addition (+)</option>
+            <option value="subtract">Subtraction (-)</option>
+            <option value="multiply">Multiplication (*)</option>
+            <option value="divide">Division (/)</option>
+            <option value="mod">Modulo (%)</option>
+        </select>
+
+        <button type="button" onclick="performOperation()">Calculate</button>
+
+        <label id="resultLabel" for="result">Result:</label>
+        <div id="result"></div>
+    </form>
+
+    <script>
+        function performOperation() {
+            var num1 = parseFloat(document.getElementById('num1').value) || 0;
+            var num2 = parseFloat(document.getElementById('num2').value) || 0;
+            var operation = document.getElementById('operation').value;
+
+            var result;
+            switch (operation) {
+                case 'add':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero';
+                    break;
+                case 'mod':
+                    result = num2 !== 0 ? num1 % num2 : 'Cannot find modulo with zero';
+                    break;
+                default:
+                    result = 'Invalid operation';
+                    break;
+            }
+
+            document.getElementById('result').innerHTML = result;
+            document.getElementById('resultLabel').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
